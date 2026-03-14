@@ -1,40 +1,167 @@
-# wordcounter
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>シンプル文字数カウンター</title>
+    <title>Word Counter | ロンドン観劇ノート</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 10px; background: #f9f9f9; }
-        textarea { width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .result-container { display: flex; justify-content: space-around; background: #fff; padding: 15px; margin-top: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .count-item { text-align: center; }
-        .count-num { font-size: 1.5rem; font-weight: bold; color: #007bff; }
-        /* 収益化用の広告・導線スペース */
-        .ad-space { margin-top: 20px; padding: 15px; background: #eee; text-align: center; border: 2px dashed #bbb; font-size: 0.8rem; }
+  /* 平成レトロなスタイル */
+body {
+    font-family: 'MS Gothic', 'Osaka-Mono', monospace; /* あえてのゴシック体 */
+    background-color: #99cccc; /* 当時のWebサイトっぽい水色 */
+    background-image: repeating-linear-gradient(45deg, #ccffff 0, #ccffff 2px, transparent 0, transparent 50%);
+    background-size: 10px 10px; /* ノイズ背景 */
+    color: #330066; /* 濃い紫 */
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ff33cc; /* 平成ピンク */
+    border: 4px solid #330066;
+    display: table;
+    margin: 0 auto 40px;
+    padding: 10px 20px;
+    background: #ffff66; /* 平成イエロー */
+}
+
+h2::before {
+    content: "";
+    display: block;
+    font-size: 0.8rem;
+    color: #330066;
+    margin-bottom: 5px;
+}
+
+/* 入力エリア：たまごっちの画面風 */
+textarea {
+    width: 100%;
+    height: 350px;
+    padding: 20px;
+    border: 4px solid #330066;
+    border-radius: 0px;
+    background-color: #ffffff;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: 10px 10px 0px #330066; /* 硬い影 */
+}
+
+textarea:focus {
+    background-color: #ccffff;
+}
+
+.result-container {
+    display: flex;
+    margin-top: 30px;
+    gap: 0;
+    border: 4px solid #330066;
+}
+
+.count-item {
+    background-color: #ffffff;
+    color: #330066;
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+}
+
+.count-item:first-child {
+    border-right: 4px solid #330066;
+}
+
+.count-label {
+    font-size: 0.8rem;
+}
+
+.count-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ff33cc;
+}
+
+/* 有料note誘導エリア：ポケベルのメッセージ風 */
+.note-banner {
+    margin-top: 60px;
+    padding: 30px;
+    border: 4px solid #330066;
+    background-color: #ccffff;
+    text-align: center;
+    position: relative;
+}
+
+.note-banner p {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.note-banner::after {
+    content: "（^_^）v"; /* 当時の顔文字 */
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+}
+
+.note-button {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #330066;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 4px solid #330066;
+    border-radius: 0;
+    box-shadow: 5px 5px 0px #ff33cc;
+}
+
+.note-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0px #ff33cc;
+}
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: #7f8c8d;
+            border-top: 1px solid #dcd7cc;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
 
     <h2>文字数カウンター</h2>
-    <textarea id="inputText" placeholder="ここに文章を入力してください..."></textarea>
+
+    <textarea id="inputText" placeholder="Write your story here..."></textarea>
 
     <div class="result-container">
         <div class="count-item">
-            <div>スペース込</div>
+            <div class="count-label">Characters (Inc. Space)</div>
             <div id="countAll" class="count-num">0</div>
         </div>
         <div class="count-item">
-            <div>スペース除外</div>
+            <div class="count-label">Characters (Exc. Space)</div>
             <div id="countTrim" class="count-num">0</div>
         </div>
     </div>
 
-    <div class="ad-space">
-        ここにGoogle AdSenseや、noteの有料記事バナーを配置<br>
-        例：【最新】効率的なライティング術（noteへ）
+    <div class="note-banner">
+        <p>Behind the Scenes: How I built this tool in 30 mins.</p>
+        <a href="https://note.com/otoharena" target="_blank" class="note-button">
+            Read on note
+        </a>
     </div>
+
+    <footer>
+        &copy; 2026 OTOHA RENA. Developed in London.
+    </footer>
 
     <script>
         const textarea = document.getElementById('inputText');
