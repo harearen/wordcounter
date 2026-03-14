@@ -1,51 +1,32 @@
-# wordcounter
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>シンプル文字数カウンター</title>
-    <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 10px; background: #f9f9f9; }
-        textarea { width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .result-container { display: flex; justify-content: space-around; background: #fff; padding: 15px; margin-top: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .count-item { text-align: center; }
-        .count-num { font-size: 1.5rem; font-weight: bold; color: #007bff; }
-        /* 収益化用の広告・導線スペース */
-        .ad-space { margin-top: 20px; padding: 15px; background: #eee; text-align: center; border: 2px dashed #bbb; font-size: 0.8rem; }
-    </style>
-</head>
-<body>
+# 📝 Simple Word Counter（文字数カウントツール）
 
-    <h2>文字数カウンター</h2>
-    <textarea id="inputText" placeholder="ここに文章を入力してください..."></textarea>
+シンプルで使いやすく、執筆・ライティング業務を効率化するためのWebツールです。
+noteやSNSの投稿、ライティング案件の文字数管理に最適化しています。
 
-    <div class="result-container">
-        <div class="count-item">
-            <div>スペース込</div>
-            <div id="countAll" class="count-num">0</div>
-        </div>
-        <div class="count-item">
-            <div>スペース除外</div>
-            <div id="countTrim" class="count-num">0</div>
-        </div>
-    </div>
+## 🚀 ツールURL
+**[https://harearen.github.io/wordcounter/]**
 
-    <div class="ad-space">
-        ここにGoogle AdSenseや、noteの有料記事バナーを配置<br>
-        例：【最新】効率的なライティング術（noteへ）
-    </div>
+---
 
-    <script>
-        const textarea = document.getElementById('inputText');
-        const countAll = document.getElementById('countAll');
-        const countTrim = document.getElementById('countTrim');
+## ✨ 特徴
+- **リアルタイム計測:** 入力と同時に文字数を更新。
+- **2種類のカウント:** - スペースを含めた全文字数
+  - スペースを除外した実質文字数
+- **完全無料・広告なし:** 執筆に集中できるクリーンなデザイン。
+- **レスポンシブ対応:** PCだけでなくスマホからも利用可能。
 
-        textarea.addEventListener('input', () => {
-            const text = textarea.value;
-            countAll.textContent = text.length;
-            countTrim.textContent = text.replace(/\s+/g, '').length;
-        });
-    </script>
-</body>
-</html>
+## 💡 開発の背景（収益モデルの練習）
+このプロジェクトは、Webツールの公開を通じた**「収益モデルの構築」**の練習として開発されました。
+技術的なスタックよりも、「いかにユーザーに価値を提供し、滞在時間を伸ばし、他のコンテンツ（note等）へ誘導するか」というマーケティング視点を取り入れています。
+
+## 🛠 使用技術
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- GitHub Pages (Hosting)
+
+## 👤 開発者
+- **harearen **
+
+## 📜 ライセンス
+このプロジェクトは [MIT License](LICENSE) の下で公開されています。商用利用・改変・再配布が可能です。
